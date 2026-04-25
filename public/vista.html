@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú Lateral - Sistema</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+
+
+<body>
+
+    <div class="sidebar">
+        <h2>MENÚ</h2>
+
+        <button class="menu-item" data-menu="prod">PRODUCCIÓN</button>
+        <div id="prod" class="submenu">
+            <button data-form="crearCliente">Opciones Cliente</button>
+            <button data-form="crearPoliza">Opciones Póliza</button>
+            <button data-form="PolizaVigente">Pólizas Vigente</button>
+            <button data-form="clienteVigente">Clientes Vigente</button>
+        </div>
+
+        <button class="menu-item" data-menu="renov">RENOVACIONES</button>
+        <div id="renov" class="submenu">
+            <button data-form="porRenovar">Pólizas por Renovar</button>            
+        </div>
+
+        <button class="menu-item" data-menu="sini">SINIESTROS</button>
+        <div id="sini" class="submenu">
+            <button data-form="crearSiniestro">Crear Siniestro</button>
+            <button data-form="SiniestrosVigentes">Siniestro Vigentes</button>
+        </div>
+        
+    </div>
+
+    <div class="content">
+        <h1>Bienvenido a Seguros PRO</h1>
+        <p>Selecciona una opción del menú.</p>
+
+        <!-- FORMULARIO CREAR CLIENTE -->
+        <div id="crearCliente" class="form-section">
+            <h2>Crear Cliente</h2>
+
+            <form id="formCliente">
+
+            <label>Nombres</label>
+            <input type="text" id="nombreCliente">
+
+            <label>Apellidos</label>
+            <input type="text" id="apellidoCliente">
+
+            <label>Tipo documento</label>
+            <select id="tipoDocumento">            
+                <option>-----</option>
+                <option>Cédula de Ciudadanía</option>
+                <option>Cédula Extranjería</option>
+                <option>TI</option>
+                <option>Pasaporte</option>
+                <option>NIT</option>
+            </select>
+ 
+            <label>Número Documento</label>
+            <input type="text" id="numeroDocumento">
+
+            <label>Correo Electronico</label>
+            <input type="text" id="correoCliente">
+
+            <label>Fecha de nacimiento</label>
+            <input type="date" id="fechaNacimiento">
+
+            <label>Dirección</label>
+            <input type="text" id="direccionCliente">
+
+            <label>Número Celular</label>
+            <input type="number" id="celularCliente">
+            
+
+            <label>Estado</label>
+            <select id="estadoCliente">
+                <option>-----</option>
+                <option>Activo</option>
+                <option>Inactivo</option>                
+            </select>
+
+            <button type="submit" id="btnGuardar">Guardar</button>
+            
+            </form>
+            <br>
+
+
+            <!-- sintaxis para caja buscar cliente en tiempo real -->
+            <input type="text" id="buscarCliente" placeholder="Buscar cliente"> 
+
+            
+            <!-- crea una tabla donde muestra estos datos: -->
+            <h2>Lista de Clientes</h2>
+
+            <table border ="1" id="tablaClientes">
+                <thead>
+                <tr>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Documento</th>
+                    <th>Correo</th>
+                    <th>Celular</th>
+                    <th>Acciones</th>
+                 </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+            </table>            
+
+        </div>
+
+        <!-- FORMULARIO CREAR PÓLIZA Envía el formulario a la URL especificada en el action del formulario.-->
+        <div id="crearPoliza" class="form-section">
+
+            <h2>Crear Póliza</h2>
+
+            <form id="formPoliza"> 
+
+            <select id="clientePoliza">
+            <option value="">Seleccione cliente</option>
+            </select>
+
+            <label>Tipo póliza</label>            
+            <select id="tipoPoliza">
+                <option>-----</option>
+                <option>Hogar</option>
+                <option>Vida</option>
+                <option>Auto</option>                               
+            </select>
+
+            <label>Plan póliza</label>
+            <input type="text" id="planPoliza">
+
+            <label>Número de Póliza</label>
+            <input type="number" id="numeroPoliza">
+
+            <label>Fecha Inicio de Vigencia</label>
+            <input type="date" id="inicioVigencia">
+
+            <label>Fecha Fin de Vigencia</label>
+            <input type="date" id="finVigencia">
+
+            <label>Valor</label>
+            <input type="number" id="valorPoliza">
+
+            
+            <label>Aseguradora</label>
+            <select id="aseguradora">
+                <option>-----</option>
+                <option>Seguros Sura</option>
+                <option>Seguros Bolivar</option>
+                <option>Seguros Axa</option>                               
+            </select>
+
+            <label>Periodicidad de Pago</label>           
+            <select id="periodicidadPago">
+                <option>-----</option>
+                <option>Mensual</option>
+                <option>Trimestral</option>
+                <option>Semestral</option>
+                <option>Anual</option>                
+            </select>
+
+            <label>Estado</label>
+            <select id="estadoPoliza">
+                <option>-----</option>
+                <option>Activa</option>
+                <option>Cancelada</option>
+                
+            </select>
+
+            <button type="submit" id="btnPoliza">Guardar</button> <!-- "type:submit" Envía el formulario a URL especificada en action del formulario.-->
+
+            <h2>Lista de Pólizas</h2>
+
+            <table border="1" id="tablaPolizas">
+
+                <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Tipo</th>
+                    <th>Plan</th>
+                    <th>Número</th>
+                    <th>Valor</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+
+            </table>
+                        
+            </form>
+
+        </div>
+
+        <!-- FORMULARIO PÓLIZA VIGENTE -->
+        <div id="PolizaVigente" class="form-section">
+
+            <h2>Pólizas Vigentes</h2>
+
+            <!-- Filtro por estado -->
+            <label>Filtrar por estado</label>
+            <select id="filtroEstadoPoliza">
+                <option value="Todas">Todas</option>
+                <option value="Activa">Activa</option>
+                <option value="Cancelada">Cancelada</option>
+            </select>
+        
+            <br><br>
+        
+            <table border="1" id="tablaPolizasVigentes">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Tipo</th>
+                        <th>Plan</th>
+                        <th>N° Póliza</th>
+                        <th>Inicio Vigencia</th>
+                        <th>Fin Vigencia</th>
+                        <th>Valor</th>
+                        <th>Aseguradora</th>
+                        <th>Periodicidad</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            
+        </div>
+
+        <!-- FORMULARIO CLIENTE VIGENTE -->
+        <div id="clienteVigente" class="form-section">
+
+            <h2>Clientes Vigentes</h2>
+
+            <!-- Filtro por estado -->
+            <label>Filtrar por estado</label>
+            <select id="filtroEstadoCliente">
+                <option value="Todos">Todos</option>
+                <option value="Activo">Activo</option>
+                <option value="Inactivo">Inactivo</option>
+            </select>
+        
+            <br><br>
+        
+            <table border="1" id="tablaClientesVigentes">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>N° Documento</th>
+                        <th>Correo</th>
+                        <th>Fecha de Nacimiento</th>
+                        <th>Dirección</th>
+                        <th>N° Celular</th>                        
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- FORMULARIO PARA RENOVACIONES -->
+        <div id="porRenovar" class="form-section">
+            <h2>Pólizas por Renovar</h2>
+            <p>Se muestran las pólizas <strong>activas</strong> cuya fecha de vencimiento es dentro de los próximos <strong>30 días</strong>.</p>
+        
+            <br>
+        
+            <table border="1" id="tablaPolizasRenovar">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Tipo</th>
+                        <th>Plan</th>
+                        <th>N° Póliza</th>
+                        <th>Fecha Vencimiento</th>
+                        <th>Días Restantes</th>
+                        <th>Valor</th>
+                        <th>Aseguradora</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+
+        <!-- FORMULARIO CREAR SINIESTRO -->
+        <div id="crearSiniestro" class="form-section">
+            <h2>Crear Siniestro</h2>
+
+            <form id="formSiniestro">
+                
+            <select id="clienteSini">
+            <option value="">Seleccione Cliente</option>
+            </select>
+            
+            <select id="polizaSini">
+            <option value="">Seleccione Póliza</option>
+            </select>  
+                    
+            
+            <label>Tipo de Riesgo</label>
+            <select id="riesgoSiniestro">
+                <option>-----</option>
+                <option>Dirección</option>
+                <option>Placa</option>
+                <option>Renta Diaria</option>
+                <option>Emfermedades Graves</option> 
+                <option>Fallecimiento</option>   
+                <option>Invalidez</option>                           
+            </select>
+            
+
+            <label>Fecha de Siniestro</label>
+            <input type="date" id="fechaSiniestro">
+
+            <label>Descripción del Siniestro</label>
+            <input type="text" id="descripcion">
+
+            <label>Estado</label>
+            <select id="estadoSiniestro">
+                <option>-----</option>
+                <option>Abierto</option>
+                <option>Cerrado</option>                
+            </select>
+            
+            <button type="submit" id="btnSiniestro">Guardar</button>
+
+            <h2>Lista de Siniestros Registrados</h2>
+
+            <table border="1" id="tablaSiniestro">
+
+                <thead>
+                <tr>
+                    <th>Cliente</th>
+                    <th>Póliza</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Funciones</th>                    
+                </tr>
+                </thead>
+
+                <tbody>
+                </tbody>
+
+            </table>
+
+            </form>
+        
+        </div>
+
+        <!-- FORMULARIO  SINIESTRO VIGENTE -->
+         <div id="SiniestrosVigentes" class="form-section">
+
+            <h2>Siniestros Vigentes</h2>
+
+            <!-- Filtro por estado -->
+            <label>Filtrar por estado</label>
+            <select id="filtroEstadoSiniestro">
+                <option value="Todos">Todos</option>
+                <option value="Abierto">Abierto</option>
+                <option value="Cerrado">Cerrado</option>
+            </select>
+        
+            <br><br>
+        
+            <table border="1" id="tablaSiniestrosVigentes">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Póliza</th>
+                        <th>Tipo de Riesgo</th>                        
+                        <th>Fecha</th>
+                        <th>Descripción</th>                        
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            
+        </div>
+         
+
+      
+    </div>
+
+    <script src="app.js"></script>
+    <script src="polizaApp.js"></script>
+    <script src="siniestroApp.js"></script>
+    <script src="clientesVigentesApp.js"></script>
+    <script src="polizasVigentesApp.js"></script>
+    <script src="polizasRenovarApp.js"></script>
+    <script src="siniestrosVigentesApp.js"></script>
+    
+
+</body>
+</html>
